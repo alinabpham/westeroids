@@ -72,8 +72,8 @@ while True:
     #Scrolling background image
     screen.blit(background, (x,0))
     screen.blit(background2,(x+w,0))
-    x = x - 1
-    if x == w:
+    x = x - 5
+    if x == (-w):
         x = 0
     msElapsed = fpsClock.tick(100)
 

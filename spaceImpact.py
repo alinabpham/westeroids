@@ -40,15 +40,11 @@ x = 0
 while True:
     for event in pygame.event.get():
         #Clicking exit will quit the game
-<<<<<<< HEAD
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
 
-=======
-        if event.type == pygame.QUIT: sys.exit()
         #Reloads photo everytime player moves
->>>>>>> origin/master
         if event.type == KEYDOWN:
             if (event.key == K_LEFT):
                 sprite=pygame.image.load('spaceship copy.png')
@@ -82,7 +78,7 @@ while True:
         x = 0
     msElapsed = fpsClock.tick(100)
     pygame.display.update()
-    
+
     #Puts player in screen
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen

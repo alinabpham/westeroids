@@ -7,6 +7,12 @@ size = width,height = 500,500
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
+<<<<<<< Updated upstream
+
+#load player spaceship
+>>>>>>> Stashed changes
+=======
+black = 0,0,0
 
 #load player spaceship
 >>>>>>> Stashed changes
@@ -28,8 +34,11 @@ y = 0
 
 x1 = 0
 y1 = -h
+<<<<<<< Updated upstream
 #Load background image
 background = pygame.image.load("galaxy1 copy.bmp").convert()
+=======
+>>>>>>> Stashed changes
 
 while 1:
     for event in pygame.event.get():
@@ -52,4 +61,10 @@ while 1:
     screen.blit(enemy, enemy_rect)
 
     pygame.display.update()
+<<<<<<< Updated upstream
+=======
+    screen.blit(player, player_rect)
+    screen.blit(enemy, enemy_rect)
+
+>>>>>>> Stashed changes
     pygame.display.flip()

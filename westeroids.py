@@ -3,22 +3,32 @@ pygame.init()
 
 window(640,400)
 
+<<<<<<< HEAD
 screen = pygame.display.set_mode((640, 480))
 player = pygame.image.load("spaceship copy.bmp").convert()
 background = pygame.image.load("galaxy1 copy.bmp").convert()
 screen.blit(background, (0, 0))
   
+=======
+img = loadImage("http://mvas.org/files/images/NGC%20253%20Sculptor%20Galaxy%20low%20res%20copy.preview.jpg")
+<<<<<<< HEAD
+bbg = image(img, 0, 0)
+    
+=======
+image(img, 0, 0)
+>>>>>>> origin/master
+>>>>>>> origin/master
 
 
 #LowerLeft
-shipX1 = 210
-shipY1 = 215
+shipX1 = 190
+shipY1 = 190
 #Tip
-shipX2 = 200
-shipY2 = 185
+shipX2 = 210
+shipY2 = 200
 #LowerRight
 shipX3 = 190
-shipY3 = 215
+shipY3 = 210
 
 bulletX = shipX2
 bulletY = shipY2
@@ -37,15 +47,17 @@ theta = 0
 rotationSpeed = 0.1
 
 def ship():
-    global shipX1, shipY1, shipX2, shipY2, shipX3, shipY3, rotateRight, rotateLeft, bullet, bulletX, bulletY
+    global shipX2, shipY2, shipX1, shipY1, shipX3, shipY3, rotateRight, rotateLeft, bullet, bulletX, bulletY
     
     #Movements
     if isKeyPressed():
-        #MoveForward
+        #Up
         if key() == "Up":
             shipY1 = shipY1 - 3
             shipY2 = shipY2 - 3
             shipY3 = shipY3 - 3
+        #Back
+=======
         elif key() == "space" and bullet == False:
             bullet = True
             bulletX = shipX2
@@ -57,51 +69,48 @@ def ship():
       
         #Temporary Movements while figuring out how to use rotate
         #MoveLeft
+>>>>>>> origin/master
         elif key() == "Left":
             shipX1 = shipX1 - 3
             shipX2 = shipX2 - 3
             shipX3 = shipX3 - 3
-        #MoveRight
+        #Forward
         elif key() == "Right":
             shipX1 = shipX1 + 3
             shipX2 = shipX2 + 3
             shipX3 = shipX3 + 3
-        #MoveBack
+        #Down
         elif key() == "Down":
             shipY1 = shipY1 + 3
             shipY2 = shipY2 + 3
             shipY3 = shipY3 + 3
+<<<<<<< HEAD
        
+=======
+        #Shooting Function
+        elif key() == "space" and bullet == False:
+            bullet = True
+            bulletX = shipX2
+            bulletY = shipY2
+=======
+        '''
+>>>>>>> origin/master
         
+>>>>>>> origin/master
         
     #background(0)
     triangle(shipX1,shipY1,shipX2,shipY2,shipX3,shipY3)
     
-    #RotateLeft     
-    if rotateLeft:
-        '''
-        popMatrix()
-        background(0)
-        rotate(radians(theta + (rotationSpeed * timeDelta)))
-        translate(200,207.5)
-        triangle(-10, 7.5, 0, -7.5, 10, 7.5)
-        pushMatrix()
-        rotateLeft = False
-        '''
-    if rotateRight:
-        '''
-        popMatrix()
-        background(0)
-        rotate(radians(theta + (rotationSpeed * timeDelta)))
-        translate(200,207.5)
-        triangle(-10, 7.5, 0, -7.5, 10, 7.5)
-        pushMatrix()
-        rotateRight = False
-        '''
-    if bullet: 
+    #Bullet Code
+    if bullet:
+        ellipse(bulletX, bulletY, 10, 10)
+        bulletX += 10
+        if bulletX > 410:
+=======
         ellipse(bulletX, bulletY, 5, 5)
         bulletY -= 10
         if bulletY < 10:
+>>>>>>> origin/master
             bullet = False
           
 

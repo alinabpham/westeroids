@@ -1,8 +1,6 @@
 import sys, pygame
 pygame.init()
 
-window(640,400)
-
 
 screen = pygame.display.set_mode((640, 480))
 player = pygame.image.load("spaceship copy.bmp").convert()
@@ -101,11 +99,10 @@ def ship():
         ellipse(bulletX, bulletY, 10, 10)
         bulletX += 10
         if bulletX > 410:
-
-        ellipse(bulletX, bulletY, 5, 5)
-        bulletY -= 10
-        if bulletY < 10:
-            bullet = False
+            ellipse(bulletX, bulletY, 5, 5)
+            bulletY -= 10
+            if bulletY < 10:
+                bullet = False
           
 
 frameRate(100)

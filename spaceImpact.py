@@ -15,7 +15,7 @@ LEFT='left'
 RIGHT='right'
 DOWN='down'
 
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(size, 0, 32)
 
 #load player spaceship
 player = pygame.image.load("spaceship copy.png").convert()
@@ -31,19 +31,18 @@ enemy_rect = enemy.get_rect()
 #Load background image
 background = pygame.image.load("galaxy1 copy.bmp").convert()
 background_rect = background.get_rect()
+background2 = pygame.image.load("galaxy1 copy.bmp").convert()
 
 #get background size
 w,h = background.get_size()
 x = 0
-y = 0
 
-x1 = -w
-y1 = 0
-
-while 1:
+while True:
     for event in pygame.event.get():
         #Clicking exit will quit the game
-        if event.type == pygame.QUIT: sys.exit()
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
 
         if event.type == KEYDOWN:
             if (event.key == K_LEFT):
@@ -68,30 +67,21 @@ while 1:
 
     screen.fill(black)
     #Puts background in screen
-    screen.blit(background, [0,0])
+    #screen.blit(background, [0,0])
+
     #Scrolling background image
-    x1 -= 1
-    x -= 1
-    screen.blit(background,(x,y))
-    screen.blit(background,(x1,y1))
-    if x > w:
-        x = -w
-    if x1 > w:
-        x1 = -w
+    screen.blit(background, (x,0))
+    screen.blit(background2,(x+w,0))
+    x = x - 1
+    if x == w:
+        x = 0
+    msElapsed = fpsClock.tick(100)
+    pygame.display.update()
+    
     #Puts player in screen
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
     screen.blit(enemy, enemy_rect)
-
-
-
-
-
-
-
-
-
-
 
     pygame.display.update()
     pygame.display.flip()

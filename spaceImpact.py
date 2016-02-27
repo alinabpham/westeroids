@@ -7,16 +7,20 @@ size = width,height = 500,500
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
+black = 0,0,0
 
+<<<<<<< HEAD
 
 #load player spaceship
+=======
+>>>>>>> origin/master
 player = pygame.image.load("spaceship copy.png")
 pygame.transform.scale(player, (10, 10))
 player_rect = player.get_rect()
 
-#Load droid enemy image
 enemy = pygame.image.load("droid.png")
 enemy_rect = enemy.get_rect()
+<<<<<<< HEAD
 
 #Load background image
 background = pygame.image.load("galaxy1 copy.bmp").convert()
@@ -28,14 +32,17 @@ y = 0
 
 x1 = 0
 y1 = -h
+=======
+background = pygame.image.load("galaxy1 copy.bmp").get_rect()
+
+>>>>>>> origin/master
 
 while 1:
-    screen.blit(background, background_rect)
-    pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
 
     screen.fill(black)
+<<<<<<< HEAD
     #Puts background in screen
     screen.blit(background, [0,0])
     y1 += 1
@@ -52,4 +59,9 @@ while 1:
     screen.blit(enemy, enemy_rect)
 
     pygame.display.update()
+=======
+    screen.blit(player, player_rect)
+    screen.blit(enemy, enemy_rect)
+
+>>>>>>> origin/master
     pygame.display.flip()

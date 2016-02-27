@@ -1,11 +1,10 @@
 import math
 from Processing import *
 
-window(400,400)
+window(625,400)
 
-<<<<<<< HEAD
 img = loadImage("http://mvas.org/files/images/NGC%20253%20Sculptor%20Galaxy%20low%20res%20copy.preview.jpg")
-image(img, 400, 400)
+image(img, 0, 0)
 
 '''
 xAstLoc = 0
@@ -44,7 +43,6 @@ onLoop += asteroids
 loop()
 '''
 
-=======
 #LowerLeft
 shipX1 = 210
 shipY1 = 215
@@ -85,6 +83,10 @@ def ship():
             bullet = True
             bulletX = shipX2
             bulletY = shipY2
+        elif key() == "Left" and rotateLeft == False:
+            rotateLeft = True
+        elif key() == "Right" and rotateRight == False:
+            rotateRight = True
         '''
         #Temporary Movements while figuring out how to use rotate
         #MoveLeft
@@ -103,14 +105,9 @@ def ship():
             shipY2 = shipY2 + 3
             shipY3 = shipY3 + 3
         '''
-        elif key() == "Left" and rotateLeft == False:
-            rotateLeft = True
-        elif key() == "Right" and rotateRight == False:
-            rotateRight = True
-        '''
         
         
-    background(0)
+    #background(0)
     triangle(shipX1,shipY1,shipX2,shipY2,shipX3,shipY3)
     
     #RotateLeft     
@@ -135,7 +132,7 @@ def ship():
         rotateRight = False
         '''
     if bullet: 
-        ellipse(bulletX, bulletY, 20, 20)
+        ellipse(bulletX, bulletY, 5, 5)
         bulletY -= 10
         if bulletY < 10:
             bullet = False
@@ -148,4 +145,3 @@ def ship():
 frameRate(100)
 onLoop += ship
 loop()  
->>>>>>> origin/master

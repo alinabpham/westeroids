@@ -10,8 +10,10 @@ screen = pygame.display.set_mode(size)
 
 #load player spaceship
 player = pygame.image.load("spaceship copy.png")
-pygame.transform.scale(player, (10, 10))
 player_rect = player.get_rect()
+player_position = pygame.mouse.get_pos()
+playerX = player_position[0]
+playerY = player_position[1]
 
 #Load droid enemy image
 enemy = pygame.image.load("droid.png")
@@ -46,12 +48,10 @@ while 1:
     if x1 > w:
         x1 = -w
     #Puts player in screen
-    screen.blit(player, player_rect)
+    screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
     screen.blit(enemy, enemy_rect)
 
     pygame.display.update()
-    screen.blit(player, player_rect)
-    screen.blit(enemy, enemy_rect)
 
     pygame.display.flip()

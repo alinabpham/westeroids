@@ -1,14 +1,28 @@
-import sys, pygame
+import sys,pygame
 from pygame.locals import *
-
 pygame.init()
 
-size = width, height = 500, 240
-speed = [2, 2]
-BLACK = 0, 0, 0
 
+size = width,height = 500,500
 screen = pygame.display.set_mode(size)
+black = 0,0,0
+player = pygame.image.load("spaceship copy.bmp")
+player_rect = player.get_rect()
+background = pygame.image.load("galaxy1 copy.bmp").get_rect()
 
-screen.fill(BLACK)
 
-spaceship = pygame.image.load("deathstar.jpg")
+
+while 1:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT: sys.exit()
+
+    screen.fill(black)
+    screen.blit(player, player_rect)
+
+    pygame.display.flip()
+
+
+
+# player = pygame.image.load("spaceship copy.bmp").convert()
+# background = pygame.image.load("galaxy1 copy.bmp").convert()
+# screen.blit(background, (0, 0))

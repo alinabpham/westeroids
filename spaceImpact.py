@@ -1,10 +1,19 @@
-import sys,pygame
+import sys, pygame, time
 from pygame.locals import *
+
 pygame.init()
 
+FPS = 30
+fpsClock = pygame.time.Clock()
 
 size = width,height = 500,500
 black = 0, 0, 0
+
+#Keys
+UP = 'up'
+LEFT='left'
+RIGHT='right'
+DOWN='down'
 
 screen = pygame.display.set_mode(size)
 
@@ -33,7 +42,29 @@ y1 = 0
 
 while 1:
     for event in pygame.event.get():
+        #Clicking exit will quit the game
         if event.type == pygame.QUIT: sys.exit()
+
+        if event.type == KEYDOWN:
+            if (event.key == K_LEFT):
+                sprite=pygame.image.load('spaceship copy.png')
+            elif (event.key == K_RIGHT):
+                sprite=pygame.image.load('spaceship copy.png')
+            elif (event.key == K_UP):
+                sprite=pygame.image.load('spaceship copy.png')
+            elif (event.key == K_DOWN):
+                sprite=pygame.image.load('spaceship copy.png')
+
+    keys_pressed = pygame.key.get_pressed()
+    #Movements
+    if keys_pressed[K_LEFT]:
+        playerX -= 5
+    if keys_pressed[K_RIGHT]:
+        playerX += 5
+    if keys_pressed[K_UP]:
+        playerY -= 5
+    if keys_pressed[K_DOWN]:
+        playerY += 5
 
     screen.fill(black)
     #Puts background in screen
@@ -52,6 +83,15 @@ while 1:
     #Puts enemy in screen
     screen.blit(enemy, enemy_rect)
 
-    pygame.display.update()
 
+
+
+
+
+
+
+
+
+
+    pygame.display.update()
     pygame.display.flip()

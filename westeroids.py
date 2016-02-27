@@ -3,7 +3,6 @@ from Processing import *
 
 window(400,400)
 
-<<<<<<< HEAD
 img = loadImage("http://mvas.org/files/images/NGC%20253%20Sculptor%20Galaxy%20low%20res%20copy.preview.jpg")
 image(img, 400, 400)
 
@@ -44,16 +43,15 @@ onLoop += asteroids
 loop()
 '''
 
-=======
 #LowerLeft
-shipX1 = 210
-shipY1 = 215
+shipX1 = 190
+shipY1 = 190
 #Tip
-shipX2 = 200
-shipY2 = 185
+shipX2 = 210
+shipY2 = 200
 #LowerRight
 shipX3 = 190
-shipY3 = 215
+shipY3 = 210
 
 bulletX = shipX2
 bulletY = shipY2
@@ -72,72 +70,44 @@ theta = 0
 rotationSpeed = 0.1
 
 def ship():
-    global shipX1, shipY1, shipX2, shipY2, shipX3, shipY3, rotateRight, rotateLeft, bullet, bulletX, bulletY
+    global shipX2, shipY2, shipX1, shipY1, shipX3, shipY3, rotateRight, rotateLeft, bullet, bulletX, bulletY
     
     #Movements
     if isKeyPressed():
-        #MoveForward
+        #Up
         if key() == "Up":
             shipY1 = shipY1 - 3
             shipY2 = shipY2 - 3
             shipY3 = shipY3 - 3
-        elif key() == "space" and bullet == False:
-            bullet = True
-            bulletX = shipX2
-            bulletY = shipY2
-        '''
-        #Temporary Movements while figuring out how to use rotate
-        #MoveLeft
+        #Back
         elif key() == "Left":
             shipX1 = shipX1 - 3
             shipX2 = shipX2 - 3
             shipX3 = shipX3 - 3
-        #MoveRight
+        #Forward
         elif key() == "Right":
             shipX1 = shipX1 + 3
             shipX2 = shipX2 + 3
             shipX3 = shipX3 + 3
-        #MoveBack
+        #Down
         elif key() == "Down":
             shipY1 = shipY1 + 3
             shipY2 = shipY2 + 3
             shipY3 = shipY3 + 3
-        '''
-        elif key() == "Left" and rotateLeft == False:
-            rotateLeft = True
-        elif key() == "Right" and rotateRight == False:
-            rotateRight = True
-        '''
-        
+        #Shooting Function
+        elif key() == "space" and bullet == False:
+            bullet = True
+            bulletX = shipX2
+            bulletY = shipY2
         
     background(0)
     triangle(shipX1,shipY1,shipX2,shipY2,shipX3,shipY3)
     
-    #RotateLeft     
-    if rotateLeft:
-        '''
-        popMatrix()
-        background(0)
-        rotate(radians(theta + (rotationSpeed * timeDelta)))
-        translate(200,207.5)
-        triangle(-10, 7.5, 0, -7.5, 10, 7.5)
-        pushMatrix()
-        rotateLeft = False
-        '''
-    if rotateRight:
-        '''
-        popMatrix()
-        background(0)
-        rotate(radians(theta + (rotationSpeed * timeDelta)))
-        translate(200,207.5)
-        triangle(-10, 7.5, 0, -7.5, 10, 7.5)
-        pushMatrix()
-        rotateRight = False
-        '''
+    #Bullet Code
     if bullet: 
-        ellipse(bulletX, bulletY, 20, 20)
-        bulletY -= 10
-        if bulletY < 10:
+        ellipse(bulletX, bulletY, 10, 10)
+        bulletX += 10
+        if bulletX > 410:
             bullet = False
         
         
@@ -148,4 +118,3 @@ def ship():
 frameRate(100)
 onLoop += ship
 loop()  
->>>>>>> origin/master

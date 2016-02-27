@@ -4,8 +4,12 @@ from Processing import *
 window(625,400)
 
 img = loadImage("http://mvas.org/files/images/NGC%20253%20Sculptor%20Galaxy%20low%20res%20copy.preview.jpg")
+<<<<<<< HEAD
 bbg = image(img, 0, 0)
     
+=======
+image(img, 0, 0)
+>>>>>>> origin/master
 
 '''
 xAstLoc = 0
@@ -81,6 +85,19 @@ def ship():
             shipY2 = shipY2 - 3
             shipY3 = shipY3 - 3
         #Back
+=======
+        elif key() == "space" and bullet == False:
+            bullet = True
+            bulletX = shipX2
+            bulletY = shipY2
+        elif key() == "Left" and rotateLeft == False:
+            rotateLeft = True
+        elif key() == "Right" and rotateRight == False:
+            rotateRight = True
+        '''
+        #Temporary Movements while figuring out how to use rotate
+        #MoveLeft
+>>>>>>> origin/master
         elif key() == "Left":
             shipX1 = shipX1 - 3
             shipX2 = shipX2 - 3
@@ -100,15 +117,24 @@ def ship():
             bullet = True
             bulletX = shipX2
             bulletY = shipY2
+=======
+        '''
         
-    background(0)
+>>>>>>> origin/master
+        
+    #background(0)
     triangle(shipX1,shipY1,shipX2,shipY2,shipX3,shipY3)
     
     #Bullet Code
-    if bullet: 
+    if bullet:
         ellipse(bulletX, bulletY, 10, 10)
         bulletX += 10
         if bulletX > 410:
+=======
+        ellipse(bulletX, bulletY, 5, 5)
+        bulletY -= 10
+        if bulletY < 10:
+>>>>>>> origin/master
             bullet = False
         
         

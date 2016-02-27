@@ -25,8 +25,8 @@ w,h = background.get_size()
 x = 0
 y = 0
 
-x1 = 0
-y1 = -h
+x1 = -w
+y1 = 0
 
 while 1:
     for event in pygame.event.get():
@@ -35,14 +35,14 @@ while 1:
     screen.fill(black)
     #Puts background in screen
     screen.blit(background, [0,0])
-    y1 += 1
-    y += 1
+    x1 -= 1
+    x -= 1
     screen.blit(background,(x,y))
     screen.blit(background,(x1,y1))
-    if y > h:
-        y = -h
-    if y1 > h:
-        y1 = -h
+    if x > w:
+        x = -w
+    if x1 > w:
+        x1 = -w
     #Puts player in screen
     screen.blit(player, player_rect)
     #Puts enemy in screen

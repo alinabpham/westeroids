@@ -21,6 +21,7 @@ enemy_rect = enemy.get_rect()
 background = pygame.image.load("galaxy1 copy.bmp").convert()
 background_rect = background.get_rect()
 
+#get background size
 w,h = background.get_size()
 x = 0
 y = 0
@@ -35,6 +36,7 @@ while 1:
     screen.fill(black)
     #Puts background in screen
     screen.blit(background, [0,0])
+    #Scrolling background image
     x1 -= 1
     x -= 1
     screen.blit(background,(x,y))

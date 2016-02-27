@@ -77,7 +77,6 @@ while True:
     if x == w:
         x = 0
     msElapsed = fpsClock.tick(100)
-    pygame.display.update()
 
     #Puts player in screen
     screen.blit(player, [playerX, playerY])

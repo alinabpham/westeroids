@@ -73,7 +73,7 @@ while True:
     screen.blit(background, (x,0))
     screen.blit(background2,(x+w,0))
     x = x - 1
-    if x == w:
+    if x == -w:
         x = 0
     msElapsed = fpsClock.tick(100)
 

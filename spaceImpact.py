@@ -7,11 +7,8 @@ size = width,height = 500,500
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
-<<<<<<< Updated upstream
 
 #load player spaceship
->>>>>>> Stashed changes
-=======
 black = 0,0,0
 
 #load player spaceship
@@ -33,11 +30,6 @@ y = 0
 
 x1 = 0
 y1 = -h
-<<<<<<< Updated upstream
-#Load background image
-background = pygame.image.load("galaxy1 copy.bmp").convert()
-=======
->>>>>>> Stashed changes
 
 while 1:
     for event in pygame.event.get():

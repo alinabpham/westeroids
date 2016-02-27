@@ -17,8 +17,9 @@ player_rect = player.get_rect()
 enemy = pygame.image.load("droid.png")
 enemy_rect = enemy.get_rect()
 
-#Background 
-background = pygame.image.load("galaxy1 copy.bmp").get_rect()
+#Background
+background = pygame.image.load("galaxy1 copy.bmp").convert()
+
 
 
 while 1:
@@ -26,6 +27,7 @@ while 1:
         if event.type == pygame.QUIT: sys.exit()
 
     screen.fill(black)
+    screen.blit(background, [0,0])
     screen.blit(player, player_rect)
     screen.blit(enemy, enemy_rect)
 

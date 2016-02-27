@@ -43,7 +43,6 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-
         #Reloads photo everytime player moves
         if event.type == KEYDOWN:
             if (event.key == K_LEFT):

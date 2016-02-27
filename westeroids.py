@@ -4,7 +4,8 @@ from Processing import *
 window(625,400)
 
 img = loadImage("http://mvas.org/files/images/NGC%20253%20Sculptor%20Galaxy%20low%20res%20copy.preview.jpg")
-image(img, 0, 0)
+bbg = image(img, 0, 0)
+    
 
 '''
 xAstLoc = 0

@@ -8,12 +8,16 @@ black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
 
+#Player Spaceship
 player = pygame.image.load("spaceship copy.png")
 pygame.transform.scale(player, (10, 10))
 player_rect = player.get_rect()
 
+#Droid Enemy
 enemy = pygame.image.load("droid.png")
 enemy_rect = enemy.get_rect()
+
+#Background 
 background = pygame.image.load("galaxy1 copy.bmp").get_rect()
 
 

@@ -7,6 +7,7 @@ size = width,height = 500,500
 screen = pygame.display.set_mode(size)
 black = 0,0,0
 player = pygame.image.load("spaceship copy.bmp")
+pygame.transform.scale(player, (50, 50))
 player_rect = player.get_rect()
 background = pygame.image.load("galaxy1 copy.bmp").get_rect()
 

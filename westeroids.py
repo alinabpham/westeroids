@@ -1,47 +1,14 @@
-import math
-from Processing import *
+import sys, pygame
+pygame.init()
 
-window(625,400)
+window(640,400)
 
-img = loadImage("http://mvas.org/files/images/NGC%20253%20Sculptor%20Galaxy%20low%20res%20copy.preview.jpg")
-image(img, 0, 0)
+screen = pygame.display.set_mode((640, 480))
+player = pygame.image.load("spaceship copy.bmp").convert()
+background = pygame.image.load("galaxy1 copy.bmp").convert()
+screen.blit(background, (0, 0))
+  
 
-'''
-xAstLoc = 0
-xAstSpeed = 1
-yAstLoc = 25
-yAstSpeed = 5
-def asteroids():
-    global xAstLoc
-    global xAstSpeed
-    global yAstLoc
-    global yAstSpeed
-    fill(0, 255, 150)
-    ellipse(xAstLoc, yAstLoc, 25, 25)
-    
-    xAstLoc = xAstLoc + xAstSpeed
-    yAstLoc = yAstLoc + yAstSpeed
-   
-    if xAstLoc < 0:
-        xAstSpeed = 1
-    elif xAstLoc > 387.5:
-        xAstSpeed = -1
-    if yAstLoc > 0:
-        yAstSpeed = -yAstSpeed
-    elif (yAstLoc > 350) and (xAstLoc < mouseX()-75 or 
-    xAstLoc > (mouseX()+75)):
-        xAstSpeed = xAstSpeed
-        yAstSpeed = yAstSpeed
-        if yAstLoc > 425:
-            endGame()
-    else: 
-        xAstSpeed = -xAstSpeed
-        yAstSpeed = -yAstSpeed
-        
-frameRate(100)
-onLoop += asteroids
-loop()
-'''
 
 #LowerLeft
 shipX1 = 210
@@ -87,7 +54,7 @@ def ship():
             rotateLeft = True
         elif key() == "Right" and rotateRight == False:
             rotateRight = True
-        '''
+      
         #Temporary Movements while figuring out how to use rotate
         #MoveLeft
         elif key() == "Left":
@@ -104,7 +71,7 @@ def ship():
             shipY1 = shipY1 + 3
             shipY2 = shipY2 + 3
             shipY3 = shipY3 + 3
-        '''
+       
         
         
     #background(0)
@@ -136,12 +103,8 @@ def ship():
         bulletY -= 10
         if bulletY < 10:
             bullet = False
-        
-        
+          
 
-
-
-   
 frameRate(100)
 onLoop += ship
 loop()  

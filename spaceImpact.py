@@ -7,9 +7,8 @@ size = width,height = 500,500
 black = 0, 0, 0
 
 screen = pygame.display.set_mode(size)
-black = 0,0,0
 
-player = pygame.image.load("spaceship copy.bmp").convert()
+player = pygame.image.load("spaceship copy.png")
 pygame.transform.scale(player, (10, 10))
 player_rect = player.get_rect()
 

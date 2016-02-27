@@ -3,22 +3,22 @@ pygame.init()
 
 window(640,400)
 
-<<<<<<< HEAD
+
 screen = pygame.display.set_mode((640, 480))
 player = pygame.image.load("spaceship copy.bmp").convert()
 background = pygame.image.load("galaxy1 copy.bmp").convert()
 screen.blit(background, (0, 0))
   
-=======
+'''
 img = loadImage("http://mvas.org/files/images/NGC%20253%20Sculptor%20Galaxy%20low%20res%20copy.preview.jpg")
-<<<<<<< HEAD
+
 bbg = image(img, 0, 0)
     
 =======
 image(img, 0, 0)
 >>>>>>> origin/master
 >>>>>>> origin/master
-
+'''
 
 #LowerLeft
 shipX1 = 190

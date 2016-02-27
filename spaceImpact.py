@@ -9,9 +9,12 @@ black = 0, 0, 0
 screen = pygame.display.set_mode(size)
 
 #load player spaceship
+<<<<<<< Updated upstream
 black = 0,0,0
 
 #load player spaceship
+=======
+>>>>>>> Stashed changes
 player = pygame.image.load("spaceship copy.png")
 pygame.transform.scale(player, (10, 10))
 player_rect = player.get_rect()
@@ -52,10 +55,7 @@ while 1:
     screen.blit(enemy, enemy_rect)
 
     pygame.display.update()
-<<<<<<< Updated upstream
-=======
     screen.blit(player, player_rect)
     screen.blit(enemy, enemy_rect)
 
->>>>>>> Stashed changes
     pygame.display.flip()

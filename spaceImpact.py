@@ -44,7 +44,7 @@ while 1:
     for event in pygame.event.get():
         #Clicking exit will quit the game
         if event.type == pygame.QUIT: sys.exit()
-
+        #Reloads photo everytime player moves
         if event.type == KEYDOWN:
             if (event.key == K_LEFT):
                 sprite=pygame.image.load('spaceship copy.png')
@@ -56,7 +56,7 @@ while 1:
                 sprite=pygame.image.load('spaceship copy.png')
 
     keys_pressed = pygame.key.get_pressed()
-    #Movements
+    #Player Movements
     if keys_pressed[K_LEFT]:
         playerX -= 5
     if keys_pressed[K_RIGHT]:

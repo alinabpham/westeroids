@@ -34,10 +34,34 @@ lives_rect = life2.get_rect()
 life3 = pygame.image.load("heartbit.bmp").convert()
 lives_rect = life3.get_rect()
 
+getHit = False
+def livesfunction():
+    global lives
+    global getHit
+    if getHit:
+            lives -= 1
+    if lives == 2:
+            screen.blit(life3, [25, 5]) == False
+    if lives == 1:
+            screen.blit(life3, [25, 5]) == False
+            screen.blit(life2, [15, 5]) == False
+    if lives == 0:
+            screen.blit(life3, [25, 5]) == False
+            screen.blit(life2, [15, 5]) == False
+            screen.blit(life1, [5, 5]) == False
+            #Print "Game Over"
+            #ont = pygame.font.Font(None, 36)
+            #text = font.render("Game Over, Sucker!", 1, (10, 10, 10))
+            #textpos = text.get_rect()
+            #textpos.centerx = background.get_rect().centerx
+            #background.blit(text, textpos)
+
+
 #Sounds
 soundtrack = pygame.mixer.Sound("soundtrack.wav")
 pew = pygame.mixer.Sound("laser.wav")
 explode_droid = pygame.mixer.Sound("explosion.wav")
+gameover = pygame.mixer.Sound("game_over.wav")
 
 #play soundtrack
 soundtrack.play()
@@ -124,6 +148,7 @@ while True:
                 bullet_list.add(bullet)
 
 
+
     # Call the update() method on all the sprites
     all_sprites_list.update()
 
@@ -142,6 +167,24 @@ while True:
             bullet_list.remove(bullet)
             all_sprites_list.remove(bullet)
         '''
+    '''
+    ship_hit_list = pygame.sprite.spritecollide(player, enemy_list, True)
+    for enemy in enemy_hit_list:
+        explode_droid.play()
+    '''
+    for enemy in enemy_list:
+        if playerX == enemy.rect.x:
+            gameover.play()
+            playerX = 100
+            playerY = 225
+            enemy_list.remove(enemy)
+            all_sprites_list.remove(enemy)
+            getHit = True
+            livesfunction()
+
+        #bullet_list.remove(bullet)
+        #all_sprites_list.remove(bullet)
+
     keys_pressed = pygame.key.get_pressed()
     #Player Movements and Boundaries
     if keys_pressed[K_LEFT] and playerX > 0:

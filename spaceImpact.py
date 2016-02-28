@@ -25,10 +25,12 @@ playerX = 100
 playerY = 225
 
 #Bullet
+
 '''
 bulletUsed = False
 bullet = pygame.image.load("laser.png").convert()
 bullet_rect = bullet.get_rect()
+
 bulletX = 0
 bulletY = 0
 # List of each bullet
@@ -70,6 +72,11 @@ background2 = pygame.image.load("galaxy1 copy.bmp").convert()
 w,h = background.get_size()
 x = 0
 
+# List of each bullet
+bullet_list = pygame.sprite.Group()
+
+
+
 while True:
     for event in pygame.event.get():
         #Clicking exit will quit the game
@@ -95,11 +102,21 @@ while True:
                 # Add the bullet to the lists
                 #all_sprites_list.add(bullet)
                 bullet_list.add(bullet)
+        '''
+        #Does event when key is lifted up
+        if event.type == KEYUP:
+            if (event.key == K_SPACE):
+                # Set the bullet so it is where the player is
+                shoot_rect.x = player_rect.x
+                shoot_rect.y = player_rect.y
+                bullets.append([shoot_rect.x,shoot_rect.y])
+
 
                 #bullet+sound.play() plays bullet sound
                 #bulletX = (playerX+100)
                 #bulletY = (playerY+50)
                 #pew = pygame.draw.circle(screen, yellow, (bulletX,bulletY),10, 5)
+        '''
     #Bullet still not working!!!
     '''
     if bullet:
@@ -120,6 +137,8 @@ while True:
         playerY -= 10
     if keys_pressed[K_DOWN] and playerY < 430:
         playerY += 10
+    if keys_pressed[K_SPACE]:
+        shoot_rect.y -= 3
 
     #Prevents ship from going out of frame
 
@@ -134,7 +153,7 @@ while True:
     #Puts player in screen
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
-    screen.blit(enemy, enemy_rect)
+    screen.blit(enemy, [enemyX, enemyY])
 
 
 

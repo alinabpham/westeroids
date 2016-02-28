@@ -1,4 +1,4 @@
-import sys, pygame, time
+import sys, pygame, time, pygame.mixer
 from pygame.locals import *
 
 pygame.init()
@@ -25,12 +25,35 @@ playerX = 100
 playerY = 225
 
 #Bullet
-bullet = False
+'''
+bulletUsed = False
+bullet = pygame.image.load("laser.png").convert()
+bullet_rect = bullet.get_rect()
 bulletX = 0
 bulletY = 0
+# List of each bullet
+bullet_list = []
 #Bullet sound
 bullet_sound = pygame.mixer.Sound("")
 #bullet_sound.play() <- command to play comes later on
+'''
+#Bullet try
+class Bullet(pygame.sprite.Sprite):
+    """ This class represents the bullet . """
+    def __init__(self):
+        # Call the parent class (Sprite) constructor
+        super(Bullet, self).__init__()
+
+        self.image = pygame.image.load("laser.png").convert()
+
+        self.rect = self.image.get_rect()
+
+    def update(self):
+        """ Move the bullet. """
+        self.rect.y -= 3
+
+# List of each bullet
+bullet_list = pygame.sprite.Group()
 
 #Load droid enemy image
 enemy = pygame.image.load("droid.png").convert()
@@ -46,13 +69,6 @@ background2 = pygame.image.load("galaxy1 copy.bmp").convert()
 #get background size
 w,h = background.get_size()
 x = 0
-
-#practice bullet
-shoot = pygame.image.load("laser.png").convert()
-shoot_rect = shoot.get_rect()
-
-# List of each bullet
-bullet_list = pygame.sprite.Group()
 
 while True:
     for event in pygame.event.get():
@@ -70,12 +86,15 @@ while True:
                 sprite = pygame.image.load('spaceship copy.png')
             elif (event.key == K_DOWN):
                 sprite = pygame.image.load('spaceship copy.png')
-            elif (event.key == K_SPACE) and bullet == False:
+            elif (event.key == K_SPACE):
+                # Fire a bullet if the user clicks the mouse button
+                bullet = Bullet()
                 # Set the bullet so it is where the player is
-                shoot_rect.x = player_rect.x
-                shoot_rect.y = player_rect.y
-                shoot_rect.y -= 3
-                bullet_list.add(shoot)
+                bullet.rect.x = player_rect.x
+                bullet.rect.y = player_rect.y
+                # Add the bullet to the lists
+                #all_sprites_list.add(bullet)
+                bullet_list.add(bullet)
 
                 #bullet+sound.play() plays bullet sound
                 #bulletX = (playerX+100)
@@ -105,8 +124,8 @@ while True:
     #Prevents ship from going out of frame
 
     #Scrolling background image
-    bbg = screen.blit(background, (x,0))
-    bbg = screen.blit(background2,(x+w,0))
+    screen.blit(background, (x,0))
+    screen.blit(background2,(x+w,0))
     x = x - 5
     if x == (-w):
         x = 0
@@ -116,6 +135,8 @@ while True:
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
     screen.blit(enemy, enemy_rect)
+
+
 
     pygame.display.update()
     pygame.display.flip()

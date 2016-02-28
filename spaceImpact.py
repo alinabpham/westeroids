@@ -2,6 +2,8 @@ import sys, pygame, time
 from pygame.locals import *
 
 pygame.init()
+pygame.mixer.init() 
+
 
 FPS = 30
 fpsClock = pygame.time.Clock()
@@ -29,7 +31,12 @@ bullet = False
 bulletX = 0
 bulletY = 0
 #Bullet sound
-bullet_sound = pygame.mixer.Sound("")
+bullet_sound = pygame.mixer.Sound("laser.mp3")
+explosion = pygame.mixer.Sound("explosion.mp3")
+gameOver = pygame.mixer.Sound("game over.mp3")
+newLife = pygame.mixer.Sound("new life.mp3")
+pygame.mixer.music.load('soundtrack.mp3')
+pygame.mixer.music.play(3, 0.0)
 #bullet_sound.play() <- command to play comes later on
 
 #Load droid enemy image
@@ -72,6 +79,8 @@ while True:
                 sprite = pygame.image.load('spaceship copy.png')
             elif (event.key == K_SPACE) and bullet == False:
                 # Set the bullet so it is where the player is
+                if( pygame.key.get_pressed()[pygame.K_SPACE] != 0 ):
+                bullet.play()
                 shoot_rect.x = player_rect.x
                 shoot_rect.y = player_rect.y
                 shoot_rect.y -= 3
@@ -82,6 +91,22 @@ while True:
                 #bulletY = (playerY+50)
                 #pew = pygame.draw.circle(screen, yellow, (bulletX,bulletY),10, 5)
     #Bullet still not working!!!
+
+    '''
+    if( asteroid is hit ):
+        explosion.play()
+
+
+    if( spaceship dies):
+        death.play()
+        pygame.time.wait(2000)
+        newLife.play()
+
+    if( lives expire ):
+        gameOver.play()
+
+
+    '''
     '''
     if bullet:
         pew = pygame.image.load('spaceship copy.png')

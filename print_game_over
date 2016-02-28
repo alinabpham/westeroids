@@ -1,0 +1,6 @@
+#Print "Game Over"
+    font = pygame.font.Font(None, 36)
+    text = font.render("Game Over, Sucker!", 1, (10, 10, 10))
+    textpos = text.get_rect()
+    textpos.centerx = background.get_rect().centerx
+    background.blit(text, textpos)

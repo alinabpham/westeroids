@@ -157,8 +157,11 @@ while True:
     #screen.blit(enemy, [enemyX, enemyY])
     
     #Puts lives on screen
+    """
+    #Waiting for getHit function
     if getHit:
-        lives -= 1
+       lives -= 1
+       """
     if lives == 3:
         screen.blit(life3, [25, 5])
         screen.blit(life2, [15, 5])

@@ -25,8 +25,6 @@ player_position = pygame.mouse.get_pos()
 playerX = 100
 playerY = 225
 
-<<<<<<< HEAD
-=======
 #load lives/hearts
 lives = 3
 life1 = pygame.image.load("heartbit.png").convert()
@@ -35,9 +33,6 @@ life2 = pygame.image.load("heartbit.png").convert()
 lives_rect = life2.get_rect()
 life3 = pygame.image.load("heartbit.png").convert()
 lives_rect = life3.get_rect()
-
-#Bullet
->>>>>>> origin/master
 
 #Sounds
 soundtrack = pygame.mixer.Sound("soundtrack.wav")

@@ -1,4 +1,4 @@
-import sys, pygame, time, pygame.mixer
+import sys, pygame, time, pygame.mixer, random
 from pygame.locals import *
 
 pygame.init()
@@ -17,7 +17,7 @@ screen = pygame.display.set_mode(size, 0, 32)
 pygame.display.set_caption('WeSteroids')
 
 #load player spaceship
-player = pygame.image.load("spaceship copy.png").convert()
+player = pygame.image.load("spaceship_copy.bmp").convert()
 player = pygame.transform.scale(player,(65,50))
 player_rect = player.get_rect()
 player_position = pygame.mouse.get_pos()
@@ -38,7 +38,7 @@ class Bullet(pygame.sprite.Sprite):
         # Call the parent class (Sprite) constructor
         super(Bullet, self).__init__()
 
-        self.image = pygame.image.load("laser.png").convert()
+        self.image = pygame.image.load("laser.bmp").convert()
         self.rect = self.image.get_rect()
         self.rect.x = playerX+50
         self.rect.y = playerY+22
@@ -47,19 +47,27 @@ class Bullet(pygame.sprite.Sprite):
         """ Move the bullet. """
         self.rect.x += 10
 
-# List of each bullet
-bullet_list = pygame.sprite.Group()
-
 #Load droid enemy image
-enemy = pygame.image.load("droid.png").convert()
-enemy_rect = enemy.get_rect()
-enemyX = 500
-enemyY = 200
+class Enemy(pygame.sprite.Sprite):
+    """ This class respresents the enemy """
+    def __init__(self):
+        super(Enemy, self).__init__()
+
+        self.image = pygame.image.load("droid.bmp").convert()
+        self.rect = self.image.get_rect()
+        self.rect.x = 450
+        self.rect.y = 250
+
+    def update(self):
+        """Move droid"""
+        self.rect.x -= 2
+
+
 
 #Load background image
-background = pygame.image.load("galaxy1 copy.bmp").convert()
+background = pygame.image.load("galaxy1_copy_converted.bmp").convert()
 background_rect = background.get_rect()
-background2 = pygame.image.load("galaxy1 copy.bmp").convert()
+background2 = pygame.image.load("galaxy1_copy_converted.bmp").convert()
 
 #get background size
 w,h = background.get_size()
@@ -69,8 +77,15 @@ x = 0
 all_sprites_list = pygame.sprite.Group()
 # List of each bullet
 bullet_list = pygame.sprite.Group()
+enemy_list = pygame.sprite.Group()
 
-
+for i in range(10):
+    enemy = Enemy()
+    enemy.rect.x = 500
+    enemy.rect.y = random.randrange(height)
+    enemy_list.add(enemy)
+    all_sprites_list.add(enemy)
+    pygame.time.delay(100)
 
 while True:
 
@@ -82,19 +97,21 @@ while True:
         #Reloads photo everytime player moves
         if event.type == KEYDOWN:
             if (event.key == K_LEFT):
-                sprite = pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship_copy.bmp')
             elif (event.key == K_RIGHT):
-                sprite = pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship_copy.bmp')
             elif (event.key == K_UP):
-                sprite = pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship_copy.bmp')
             elif (event.key == K_DOWN):
-                sprite = pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship_copy.bmp')
             elif (event.key == K_SPACE):
                 # Fire a bullet if the user clicks the mouse button
                 bullet = Bullet()
                 # Add the bullet to the lists
                 all_sprites_list.add(bullet)
                 bullet_list.add(bullet)
+
+
 
 
     # Call the update() method on all the sprites
@@ -113,7 +130,6 @@ while True:
         playerY += 10
     #if keys_pressed[K_SPACE]:
         #shoot_rect.y -= 3
-
     #Prevents ship from going out of frame
 
     #Scrolling background image
@@ -127,7 +143,8 @@ while True:
     #Puts player in screen
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
-    screen.blit(enemy, [enemyX, enemyY])
+
+    #screen.blit(enemy, [enemyX, enemyY])
 
     # Draw all the sprites
     all_sprites_list.draw(screen)

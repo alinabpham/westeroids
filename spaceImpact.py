@@ -27,11 +27,11 @@ playerY = 225
 
 #load lives/hearts
 lives = 3
-life1 = pygame.image.load("heartbit.png").convert()
+life1 = pygame.image.load("heartbit.bmp").convert()
 lives_rect = life1.get_rect()
-life2 = pygame.image.load("heartbit.png").convert()
+life2 = pygame.image.load("heartbit.bmp").convert()
 lives_rect = life2.get_rect()
-life3 = pygame.image.load("heartbit.png").convert()
+life3 = pygame.image.load("heartbit.bmp").convert()
 lives_rect = life3.get_rect()
 
 #Sounds
@@ -159,7 +159,7 @@ while True:
     screen.blit(life1, [5, 5])
     screen.blit(life2, [15, 5])
     screen.blit(life3, [25, 5])
-    
+
 
     # Draw all the sprites
     all_sprites_list.draw(screen)

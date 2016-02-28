@@ -2,6 +2,7 @@ import sys, pygame, time, pygame.mixer
 from pygame.locals import *
 
 pygame.init()
+pygame.mixer.init()
 
 FPS = 30
 fpsClock = pygame.time.Clock()
@@ -24,13 +25,14 @@ player_position = pygame.mouse.get_pos()
 playerX = 100
 playerY = 225
 
-#Bullet
 
-'''
-#Bullet sound
-bullet_sound = pygame.mixer.Sound("")
-#bullet_sound.play() <- command to play comes later on
-'''
+#Sounds
+soundtrack = pygame.mixer.Sound("soundtrack.wav")
+pew = pygame.mixer.Sound("laser.wav")
+
+#play soundtrack
+soundtrack.play()
+
 #Bullet
 class Bullet(pygame.sprite.Sprite):
     """ This class represents the bullet . """
@@ -71,7 +73,6 @@ all_sprites_list = pygame.sprite.Group()
 bullet_list = pygame.sprite.Group()
 
 
-
 while True:
 
     for event in pygame.event.get():
@@ -92,6 +93,7 @@ while True:
             elif (event.key == K_SPACE):
                 # Fire a bullet if the user clicks the mouse button
                 bullet = Bullet()
+                pew.play()
                 # Add the bullet to the lists
                 all_sprites_list.add(bullet)
                 bullet_list.add(bullet)
@@ -100,7 +102,7 @@ while True:
     # Call the update() method on all the sprites
     all_sprites_list.update()
 
-    
+
     keys_pressed = pygame.key.get_pressed()
     #Player Movements and Boundaries
     if keys_pressed[K_LEFT] and playerX > 0:

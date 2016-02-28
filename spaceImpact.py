@@ -137,8 +137,8 @@ while True:
         playerY -= 10
     if keys_pressed[K_DOWN] and playerY < 430:
         playerY += 10
-    if keys_pressed[K_SPACE]:
-        shoot_rect.y -= 3
+    #if keys_pressed[K_SPACE]:
+        #shoot_rect.y -= 3
 
     #Prevents ship from going out of frame
 

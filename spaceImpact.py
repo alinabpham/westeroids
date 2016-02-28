@@ -114,16 +114,26 @@ all_sprites_list = pygame.sprite.Group()
 bullet_list = pygame.sprite.Group()
 enemy_list = pygame.sprite.Group()
 
-for i in range(10):
-    enemy = Enemy()
-    enemy.rect.x = 500
-    enemy.rect.y = random.randrange(height)
-    enemy_list.add(enemy)
-    all_sprites_list.add(enemy)
-    pygame.time.delay(100)
+
+
+def newdroids1():
+        space = random.randrange(50,450)
+        enemy = Enemy()
+        enemy.rect.x = 500
+        enemy.rect.y = random.randrange(space)
+        enemy_list.add(enemy)
+        all_sprites_list.add(enemy)
+
+global enemy_move
+enemy_move = 20
+
+
+
+
+
+
 
 while True:
-
     for event in pygame.event.get():
         #Clicking exit will quit the game
         if event.type == pygame.QUIT:
@@ -211,6 +221,7 @@ while True:
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
     #screen.blit(enemy, [enemyX, enemyY])
+<<<<<<< Updated upstream
     
     #Puts lives on screen
     """
@@ -235,8 +246,17 @@ while True:
         textpos.centerx = background.get_rect().centerx
         background.blit(text, textpos)
 
+=======
+    #puts lives on screen
+    screen.blit(life1, [5, 5])
+    screen.blit(life2, [15, 5])
+    screen.blit(life3, [25, 5])
+>>>>>>> Stashed changes
     # Draw all the sprites
     all_sprites_list.draw(screen)
-
+    #draws enemies
+    if enemy_move % 30== 0:
+        newdroids1()
+    enemy_move += 1
     pygame.display.update()
     pygame.display.flip()

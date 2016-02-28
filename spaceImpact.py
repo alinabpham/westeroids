@@ -41,11 +41,11 @@ class Bullet(pygame.sprite.Sprite):
         self.image = pygame.image.load("laser.png").convert()
         self.rect = self.image.get_rect()
         self.rect.x = playerX+50
-        self.rect.y = playerY+20
+        self.rect.y = playerY+22
 
     def update(self):
         """ Move the bullet. """
-        self.rect.x += 4
+        self.rect.x += 10
 
 # List of each bullet
 bullet_list = pygame.sprite.Group()
@@ -100,7 +100,7 @@ while True:
     # Call the update() method on all the sprites
     all_sprites_list.update()
 
-    
+
     keys_pressed = pygame.key.get_pressed()
     #Player Movements and Boundaries
     if keys_pressed[K_LEFT] and playerX > 0:

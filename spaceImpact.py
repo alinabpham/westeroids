@@ -155,11 +155,26 @@ while True:
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
     #screen.blit(enemy, [enemyX, enemyY])
-    #puts lives on screen
-    screen.blit(life1, [5, 5])
-    screen.blit(life2, [15, 5])
-    screen.blit(life3, [25, 5])
-
+    
+    #Puts lives on screen
+    if getHit:
+        lives -= 1
+    if lives == 3:
+        screen.blit(life3, [25, 5])
+        screen.blit(life2, [15, 5])
+        screen.blit(life1, [5, 5])
+    elif lives == 2:
+        screen.blit(life2, [15, 5])
+        screen.blit(life1, [5, 5])
+    elif lives == 1:
+        screen.blit(life1, [5, 5])
+    elif lives == 0:
+        #Print "Game Over"
+        font = pygame.font.Font(None, 36)
+        text = font.render("Game Over, Sucker!", 1, (10, 10, 10))
+        textpos = text.get_rect()
+        textpos.centerx = background.get_rect().centerx
+        background.blit(text, textpos)
 
     # Draw all the sprites
     all_sprites_list.draw(screen)

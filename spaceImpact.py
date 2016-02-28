@@ -10,10 +10,15 @@ size = width,height = 500,483
 black = 0, 0, 0
 yellow = 255,255,0
 
+#Creats a 500 by 483 screen
 screen = pygame.display.set_mode(size, 0, 32)
+
+#Names the window "Nokia Wesleyan"
+pygame.display.set_caption('WeSteroids')
 
 #load player spaceship
 player = pygame.image.load("spaceship copy.png").convert()
+player = pygame.transform.scale(player,(65,50))
 player_rect = player.get_rect()
 player_position = pygame.mouse.get_pos()
 playerX = 100
@@ -29,7 +34,8 @@ bullet_sound = pygame.mixer.Sound("")
 
 #Load droid enemy image
 enemy = pygame.image.load("droid.png").convert()
-enemy_rect = enemy.get_rect()
+enemyX = 500
+enemyY = 200
 
 #Load background image
 background = pygame.image.load("galaxy1 copy.bmp").convert()
@@ -50,25 +56,26 @@ while True:
         #Reloads photo everytime player moves
         if event.type == KEYDOWN:
             if (event.key == K_LEFT):
-                sprite=pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship copy.png')
             elif (event.key == K_RIGHT):
-                sprite=pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship copy.png')
             elif (event.key == K_UP):
-                sprite=pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship copy.png')
             elif (event.key == K_DOWN):
-                sprite=pygame.image.load('spaceship copy.png')
+                sprite = pygame.image.load('spaceship copy.png')
             elif (event.key == K_SPACE) and bullet == False:
                 #bullet+sound.play() plays bullet sound
-                bullet = True
                 bulletX = (playerX+100)
                 bulletY = (playerY+50)
+                pew = pygame.draw.circle(screen, yellow, (bulletX,bulletY),10, 5)
     #Bullet still not working!!!
+    '''
     if bullet:
-        pygame.draw.circle(screen, yellow, (bulletX + 50, bulletY), 5, 0)
+        pew = pygame.image.load('spaceship copy.png')
         bulletX += 15
         if bulletX > 500:
             bullet = False
-
+    '''
     screen.fill(black)
 
     keys_pressed = pygame.key.get_pressed()
@@ -79,7 +86,7 @@ while True:
         playerX += 10
     if keys_pressed[K_UP] and playerY > 0:
         playerY -= 10
-    if keys_pressed[K_DOWN] and playerY < 420:
+    if keys_pressed[K_DOWN] and playerY < 430:
         playerY += 10
 
     #Prevents ship from going out of frame

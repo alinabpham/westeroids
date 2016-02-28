@@ -37,6 +37,7 @@ lives_rect = life3.get_rect()
 #Sounds
 soundtrack = pygame.mixer.Sound("soundtrack.wav")
 pew = pygame.mixer.Sound("laser.wav")
+explode_droid = pygame.mixer.Sound("explosion.wav")
 
 #play soundtrack
 soundtrack.play()
@@ -123,12 +124,24 @@ while True:
                 bullet_list.add(bullet)
 
 
-
-
     # Call the update() method on all the sprites
     all_sprites_list.update()
 
-
+    # Calculate mechanics for each bullet
+    for bullet in bullet_list:
+        # See if it hit a block
+        enemy_hit_list = pygame.sprite.spritecollide(bullet, enemy_list, True)
+        # For each block hit, remove the bullet and add to the score
+        for enemy in enemy_hit_list:
+            explode_droid.play()
+            bullet_list.remove(bullet)
+            all_sprites_list.remove(bullet)
+        # Remove the bullet if it flies up off the screen
+        '''
+        if bullet.rect.y < -10:
+            bullet_list.remove(bullet)
+            all_sprites_list.remove(bullet)
+        '''
     keys_pressed = pygame.key.get_pressed()
     #Player Movements and Boundaries
     if keys_pressed[K_LEFT] and playerX > 0:

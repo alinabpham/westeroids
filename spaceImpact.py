@@ -6,14 +6,9 @@ pygame.init()
 FPS = 30
 fpsClock = pygame.time.Clock()
 
-size = width,height = 500,500
+size = width,height = 500,483
 black = 0, 0, 0
-
-#Keys
-UP = 'up'
-LEFT='left'
-RIGHT='right'
-DOWN='down'
+yellow = 255,255,0
 
 screen = pygame.display.set_mode(size, 0, 32)
 
@@ -21,8 +16,13 @@ screen = pygame.display.set_mode(size, 0, 32)
 player = pygame.image.load("spaceship copy.png").convert()
 player_rect = player.get_rect()
 player_position = pygame.mouse.get_pos()
-playerX = player_position[0]
-playerY = player_position[1]
+playerX = 100
+playerY = 225
+
+#Bullet
+bullet = False
+bulletX = 0
+bulletY = 0
 
 #Load droid enemy image
 enemy = pygame.image.load("droid.png").convert()
@@ -53,25 +53,35 @@ while True:
                 sprite=pygame.image.load('spaceship copy.png')
             elif (event.key == K_DOWN):
                 sprite=pygame.image.load('spaceship copy.png')
-
-    keys_pressed = pygame.key.get_pressed()
-    #Player Movements
-    if keys_pressed[K_LEFT]:
-        playerX -= 5
-    if keys_pressed[K_RIGHT]:
-        playerX += 5
-    if keys_pressed[K_UP]:
-        playerY -= 5
-    if keys_pressed[K_DOWN]:
-        playerY += 5
+            elif (event.key == K_SPACE) and bullet == False:
+                bullet = True
+                bulletX = (playerX+100)
+                bulletY = (playerY+50)
+    #Bullet still not working!!!
+    if bullet:
+        pygame.draw.circle(screen, yellow, (bulletX + 50, bulletY), 5, 0)
+        bulletX += 10
+        if bulletX > 500:
+            bullet = False
 
     screen.fill(black)
-    #Puts background in screen
-    #screen.blit(background, [0,0])
+
+    keys_pressed = pygame.key.get_pressed()
+    #Player Movements and Boundaries
+    if keys_pressed[K_LEFT] and playerX > 0:
+        playerX -= 10
+    if keys_pressed[K_RIGHT] and playerX < 350:
+        playerX += 10
+    if keys_pressed[K_UP] and playerY > 0:
+        playerY -= 10
+    if keys_pressed[K_DOWN] and playerY < 420:
+        playerY += 10
+
+    #Prevents ship from going out of frame
 
     #Scrolling background image
-    screen.blit(background, (x,0))
-    screen.blit(background2,(x+w,0))
+    bbg = screen.blit(background, (x,0))
+    bbg = screen.blit(background2,(x+w,0))
     x = x - 5
     if x == (-w):
         x = 0

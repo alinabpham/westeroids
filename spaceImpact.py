@@ -2,6 +2,7 @@ import sys, pygame, time, pygame.mixer, random
 from pygame.locals import *
 
 pygame.init()
+pygame.mixer.init()
 
 FPS = 30
 fpsClock = pygame.time.Clock()
@@ -24,13 +25,22 @@ player_position = pygame.mouse.get_pos()
 playerX = 100
 playerY = 225
 
-#Bullet
+#load lives/hearts
+lives = 3
+life1 = pygame.image.load("heartbit.png").convert()
+lives_rect = life1.get_rect()
+life2 = pygame.image.load("heartbit.png").convert()
+lives_rect = life2.get_rect()
+life3 = pygame.image.load("heartbit.png").convert()
+lives_rect = life3.get_rect()
 
-'''
-#Bullet sound
-bullet_sound = pygame.mixer.Sound("")
-#bullet_sound.play() <- command to play comes later on
-'''
+#Sounds
+soundtrack = pygame.mixer.Sound("soundtrack.wav")
+pew = pygame.mixer.Sound("laser.wav")
+
+#play soundtrack
+soundtrack.play()
+
 #Bullet
 class Bullet(pygame.sprite.Sprite):
     """ This class represents the bullet . """
@@ -107,6 +117,7 @@ while True:
             elif (event.key == K_SPACE):
                 # Fire a bullet if the user clicks the mouse button
                 bullet = Bullet()
+                pew.play()
                 # Add the bullet to the lists
                 all_sprites_list.add(bullet)
                 bullet_list.add(bullet)
@@ -143,8 +154,12 @@ while True:
     #Puts player in screen
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
-
     #screen.blit(enemy, [enemyX, enemyY])
+    #puts lives on screen
+    screen.blit(life1, [5, 5])
+    screen.blit(life2, [15, 5])
+    screen.blit(life3, [25, 5])
+    
 
     # Draw all the sprites
     all_sprites_list.draw(screen)

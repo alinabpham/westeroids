@@ -23,6 +23,9 @@ playerY = 225
 bullet = False
 bulletX = 0
 bulletY = 0
+#Bullet sound
+bullet_sound = pygame.mixer.Sound("")
+#bullet_sound.play() <- command to play comes later on
 
 #Load droid enemy image
 enemy = pygame.image.load("droid.png").convert()
@@ -36,6 +39,7 @@ background2 = pygame.image.load("galaxy1 copy.bmp").convert()
 #get background size
 w,h = background.get_size()
 x = 0
+
 
 while True:
     for event in pygame.event.get():
@@ -54,13 +58,14 @@ while True:
             elif (event.key == K_DOWN):
                 sprite=pygame.image.load('spaceship copy.png')
             elif (event.key == K_SPACE) and bullet == False:
+                #bullet+sound.play() plays bullet sound
                 bullet = True
                 bulletX = (playerX+100)
                 bulletY = (playerY+50)
     #Bullet still not working!!!
     if bullet:
         pygame.draw.circle(screen, yellow, (bulletX + 50, bulletY), 5, 0)
-        bulletX += 10
+        bulletX += 15
         if bulletX > 500:
             bullet = False
 

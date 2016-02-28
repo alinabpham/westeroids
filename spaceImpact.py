@@ -127,12 +127,6 @@ def newdroids1():
 global enemy_move
 enemy_move = 20
 
-
-
-
-
-
-
 while True:
     for event in pygame.event.get():
         #Clicking exit will quit the game
@@ -183,7 +177,7 @@ while True:
         explode_droid.play()
     '''
     for enemy in enemy_list:
-        if playerX == enemy.rect.x:
+        if (enemy.rect.x+50 > playerX) and (playerX > enemy.rect.x) and (enemy.rect.y+50 > playerY) and (playerY > enemy.rect.y):
             gameover.play()
             playerX = 100
             playerY = 225
@@ -221,8 +215,7 @@ while True:
     screen.blit(player, [playerX, playerY])
     #Puts enemy in screen
     #screen.blit(enemy, [enemyX, enemyY])
-<<<<<<< Updated upstream
-    
+
     #Puts lives on screen
     """
     #Waiting for getHit function
@@ -245,13 +238,9 @@ while True:
         textpos = text.get_rect()
         textpos.centerx = background.get_rect().centerx
         background.blit(text, textpos)
+        pygame.quit()
 
-=======
-    #puts lives on screen
-    screen.blit(life1, [5, 5])
-    screen.blit(life2, [15, 5])
-    screen.blit(life3, [25, 5])
->>>>>>> Stashed changes
+
     # Draw all the sprites
     all_sprites_list.draw(screen)
     #draws enemies
